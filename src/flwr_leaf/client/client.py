@@ -4,8 +4,8 @@ import flwr as fl
 import torch
 from tqdm import tqdm
 
-from .net import MLP
 from ..data.synthetic import load_synthetic_data
+from .net import MLP
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
