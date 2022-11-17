@@ -1,3 +1,43 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[project]
+name = "flwr_leaf"
+description = "Example of Flower running on LEAF benchmark"
+readme = "README.md"
+# license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+]
+requires-python = ">=3.8.*"
+dependencies = [
+"numpy",
+"scipy",
+"Pillow",
+"flwr",
+"torch",
+"torchvision",
+"ray",
+"tqdm",
+"hydra-core",
+]
+version = "0.0.1"
+
+[project.optional-dependencies]
+dev = [
+    "pysen==0.10.1",
+    "black==22.3.0",
+    "flake8==4.0.1",
+    "isort==5.10.1",
+    "mypy==0.910",
+]
+
+
+
 [tool.pysen]
 version = "0.10.1"
 

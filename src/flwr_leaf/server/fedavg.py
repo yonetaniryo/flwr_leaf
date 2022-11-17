@@ -1,7 +1,6 @@
 from typing import List, Tuple
 
 import flwr as fl
-import hydra
 from flwr.common import Metrics
 
 
@@ -15,19 +14,12 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     return {"accuracy": sum(accuracies) / sum(examples)}
 
 
-@hydra.main(config_path="config", config_name="synthetic_server")
-def main(config):
-    # Define strategy
+def start_fedavg_server(server_address, num_rounds):
     strategy = fl.server.strategy.FedAvg(
         evaluate_metrics_aggregation_fn=weighted_average,
     )
-    # Start Flower server
-    hist = fl.server.start_server(
-        server_address=config.server_address,
-        config=fl.server.ServerConfig(num_rounds=config.num_rounds),
+    return fl.server.start_server(
+        server_address=server_address,
+        config=fl.server.ServerConfig(num_rounds=num_rounds),
         strategy=strategy,
     )
-
-
-if __name__ == "__main__":
-    main()

@@ -6,7 +6,7 @@
 ```bash
 $ git clone --recursive https://github.com/yonetaniryo/flwr_leaf.git
 $ cd flwr_leaf
-$ pip install -r requirements.txt
+$ pip install .[dev]
 ```
 
 ## Generate Synthetic Data
@@ -19,5 +19,6 @@ $ sh preprocess.sh -s niid --sf 1.0 -k 100 -t sample --tf 0.6
 
 ## Run FedAvg on Synthetic Data
 ```bash
-$ bash sh run.sh
+$ cd scripts
+$ bash run.sh
 ```

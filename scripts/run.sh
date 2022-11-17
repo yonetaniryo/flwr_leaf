@@ -4,12 +4,12 @@ cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/
 
 
 echo "Starting server"
-python server.py &
+python run_fedavg_server.py &
 sleep 3  # Sleep for 3s to give the server enough time to start
 
 for i in `seq 0 4`; do
     echo "Starting client $i"
-    python client.py cid=$i &
+    python run_client.py cid=$i &
 done
 
 # Enable CTRL+C to stop all background processes
