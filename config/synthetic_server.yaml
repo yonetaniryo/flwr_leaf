@@ -1,0 +1,6 @@
+server_address: "0.0.0.0:8080"
+num_rounds: 100
+
+hydra:
+  job:
+    chdir: False

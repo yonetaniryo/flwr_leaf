@@ -1,0 +1,11 @@
+client_address: "0.0.0.0:8080"
+data_path: "leaf/data/synthetic/data"
+cid: 0
+batch_size: 16
+local_epochs: 3
+lr: 0.001
+
+
+hydra:
+  job:
+    chdir: False
