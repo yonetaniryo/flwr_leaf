@@ -1,3 +1,5 @@
+"""PyTorch custom dataset definition for Synthetic Dataset from LEAF benchmark"""
+
 import json
 from glob import glob
 

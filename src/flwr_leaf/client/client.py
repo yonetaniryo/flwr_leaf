@@ -1,3 +1,5 @@
+"""modified version of https://github.com/adap/flower/blob/main/examples/quickstart_pytorch/client.py"""
+
 from collections import OrderedDict
 
 import flwr as fl

@@ -1,3 +1,5 @@
+"""copied from https://github.com/adap/flower/blob/main/examples/quickstart_pytorch/server.py"""
+
 from typing import List, Tuple
 
 import flwr as fl
