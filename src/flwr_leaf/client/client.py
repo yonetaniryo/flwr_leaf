@@ -4,7 +4,9 @@ from collections import OrderedDict
 
 import flwr as fl
 import torch
+import torch.nn as nn
 from tqdm import tqdm
+from torch.utils.data import DataLoader
 
 from ..data.synthetic import load_synthetic_data
 from .net import MLP
@@ -12,7 +14,7 @@ from .net import MLP
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def train(net, trainloader, epochs, lr):
+def train(net: nn.Module, trainloader: DataLoader, epochs: int, lr: float) -> None:
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=lr, momentum=0.9)
     for _ in range(epochs):
@@ -22,7 +24,7 @@ def train(net, trainloader, epochs, lr):
             optimizer.step()
 
 
-def test(net, testloader):
+def test(net: nn.Module, testloader: DataLoader) -> list:
     criterion = torch.nn.CrossEntropyLoss()
     correct, total, loss = 0, 0, 0.0
     with torch.no_grad():
@@ -35,7 +37,7 @@ def test(net, testloader):
     return loss / len(testloader.dataset), correct / total
 
 
-class Client(fl.client.NumPyClient):
+class SyntheticClient(fl.client.NumPyClient):
     def __init__(self, config):
         self.net = MLP(config.net.input_dim, config.net.num_classes)
         self.local_epochs = config.optim.local_epochs
